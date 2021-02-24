@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+  <!-- Launch ROS Package Template Node -->
+  <node pkg="peek_thermal" type="peek_thermal_node" name="peek_thermal_node" output="screen">
+    <param name="img_topic" value="/thermal_image_view" />
+    <param name="cam_info_topic" value="/narrow_stereo/camera_info" />
+    <param name="visualization" value="True" />
+  </node>
+
+</launch>
