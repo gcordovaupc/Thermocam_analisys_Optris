@@ -1,0 +1,86 @@
+Author:               Evocortex GmbH
+Date:                 2017-12-01
+Documentation:        www.evocortex.com				
+Contact:              direct-sdk@optris.com
+
+Installation and compiling instructions to run the 
+sample application with a IR imager:
+-------------------------------------------------------------------------------------------------------------
+
+1.  Install irimager package and the following dependencies, if not already done (sudo apt-get install ...)
+      gcc
+      cmake
+      build-essential
+      libudev-dev
+      freeglut3 (only needed for OpenGL example)
+      freeglut3-dev  (only needed for OpenGL example)
+    You might consider to use
+      sudo apt-get -f install
+    to resolve missing dependencies after installing the irimager package.
+2.  Reload udev daemon rules
+    $ sudo udevadm control --reload-rules
+3.  Copy example application and build:
+    $ cd examples/<subfolder>/build
+    $ cmake ..
+    $ make
+4.  Add the current user to the group video
+    $ sudo usermod -a -G video username
+5.  Edit one of the xml-files in config
+    Rename the file according to the serial number of your imager device.
+    Edit content: FOV (Field of view) and temperature range according to the calibration data of your imager device.
+6. plug imager
+7. Launch your sample application, e.g., ./imager_show <12070039.xml>
+
+Notes on Ubuntu 10.04
+---------------------
+Important: following hints are obsolete when using the UVC controller
+
+Due to a bug in Linux kernel versions <2.6.35, hidraw interfacing is not working properly
+with interrupt end nodes. For that, libusb-1.0 needs to be used as workaround.
+For that, additionally install
+- libusb-dev
+- libusb-1.0-0-dev
+Configure udev rules for libusb, e.g.
+- Change in /lib/udev/rules.d/50-udev-default.rules the following line
+  SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", MODE="0664"
+  to
+  SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", MODE="0666"
+  Then reboot.
+
+Troubleshooting
+---------------
+If you cannot launch the example application, please check the following steps:
+1.  Check video streaming, e.g. with guvcview
+    Do also display the frame rate. If you see a green noisy image, UVC interfacing is ok.
+    If not, check the USB connection (lsusb), syslog messages (/var/log/syslog) and read permissions.    
+2.  Some example applications are using OpenGL: Check your graphics driver installation and whether 3D rendering is enabled (glxinfo).
+3.  If you launch imager_show in a VirtualBox environment, OpenGL might crash. In that case start it as follows:
+    LIBGL_ALWAYS_INDIRECT=1 ./imager_show <YOUR_XML_FILE>
+
+    
+API Changes for IR Imager Direct SDK From Version 2.1.1 (and 2.0.9) to Version 3.0.0
+---------------	
+
+New Parameter (useHID) in imager init/reconnect function:
+2.1.1: imager.init(&params, dev->getFrequency(), dev->getWidth(), dev->getHeight())
+2.1.1: imager->reconnect(&params, dev->getFrequency(), dev->getWidth(), dev->getHeight());
+3.0.0: imager.init(&params, dev->getFrequency(), dev->getWidth(), dev->getHeight(), dev->controlledViaHID())
+3.0.0: imager->reconnect(&params, dev->getFrequency(), dev->getWidth(), dev->getHeight(), dev->controlledViaHID());
+------
+Need c++11 to build oop example:
+2.1.1: oop/CMakeLists.txt: SET(CMAKE_CXX_FLAGS "-D_GLIBCXX_USE_CXX11_ABI=0")
+3.0.0: oop/CMakeLists.txt: SET(CMAKE_CXX_FLAGS "-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0")
+------
+Need to implement pure virtual method void IRImagerClient::onProcessExit(void* arg) for IRImagerHandler.
+------
+New parameter for onThermalFrameEvent callback (energy values array):
+2.1.1: void onThermalFrameEvent(unsigned short* thermal, unsigned int w, unsigned int h, IRFrameMetadata meta, void* arg)
+3.0.0: void onThermalFrameEvent(unsigned short* thermal, unsigned short* energy, unsigned int w, unsigned int h, IRFrameMetadata meta, void* arg)
+------
+Serialize Function moves from imager to iBuilder:
+2.1.1: _imager->serialize(file.c_str(), (char*)ppm, size);
+3.0.0: _iBuilder.serializePPM(file.c_str(), ppm, _iBuilder.getStride(), height);
+------
+Calling convention directbinding:
+2.1.1: stdcall
+3.0.0: cdecl
