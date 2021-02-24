@@ -1,0 +1,2 @@
+/home/cesarrg/Optris_ws/src/optris_drivers/config/generic.xml
+0

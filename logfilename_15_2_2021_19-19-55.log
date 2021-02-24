@@ -1,0 +1,29 @@
+WARNING [IRDeviceParams.cpp:156] @ 0.00012085s :XML parameter 'pifmode' is deprecated, please use pif api instead.
+WARNING [IRDeviceParams.cpp:164] @ 0.000143066s :XML parameter 'average' is deprecated and is not supported anymore.
+DEBUG [IRDeviceParams.cpp:186] @ 0.000150879s :Parameters
+DEBUG [IRDeviceParams.cpp:187] @ 0.000160889s :serial: 0
+DEBUG [IRDeviceParams.cpp:188] @ 0.000167969s :videoformatindex: 0
+DEBUG [IRDeviceParams.cpp:189] @ 0.000172852s :fov: 0
+DEBUG [IRDeviceParams.cpp:190] @ 0.000177002s :optics_text: 
+DEBUG [IRDeviceParams.cpp:191] @ 0.000179932s :formatspath: /usr/share/libirimager
+DEBUG [IRDeviceParams.cpp:192] @ 0.000182861s :calipath: /usr/share/libirimager/cali
+DEBUG [IRDeviceParams.cpp:193] @ 0.000186035s :temperature min: 0
+DEBUG [IRDeviceParams.cpp:194] @ 0.000189941s :temperature max: 250
+DEBUG [IRDeviceParams.cpp:195] @ 0.000193848s :framerate: 32
+DEBUG [IRDeviceParams.cpp:196] @ 0.000197021s :bispectral: 0
+DEBUG [IRDeviceParams.cpp:197] @ 0.000200928s :flag automatic: 1
+DEBUG [IRDeviceParams.cpp:198] @ 0.000203857s :min interval: 15
+DEBUG [IRDeviceParams.cpp:199] @ 0.000208008s :max interval: 0
+DEBUG [IRDeviceParams.cpp:200] @ 0.000210937s :chip heating mode: 0
+DEBUG [IRDeviceParams.cpp:201] @ 0.000214844s :chip heating fixed val: 40
+DEBUG [IRDeviceParams.cpp:202] @ 0.000218018s :focus:  -1
+DEBUG [IRDeviceParams.cpp:203] @ 0.000220947s :enable extended temp range: 0
+DEBUG [IRDeviceParams.cpp:204] @ 0.000224854s :buffer queue size: 5
+DEBUG [IRDeviceParams.cpp:205] @ 0.000228027s :enable high precision: 0
+DEBUG [IRDeviceParams.cpp:206] @ 0.000230957s :radialDistortionCorrectionMode: 0
+DEBUG [IRDeviceParams.cpp:207] @ 0.000233887s :deviceAPI: 0
+DEBUG [IRDeviceParams.cpp:208] @ 0.000237061s :useExternalProbeForReferencing: 0
+DEBUG [IRDeviceParams.cpp:209] @ 0.00023999s :enableMultiThreading: 0
+INFO [IRDeviceCreate.cpp:35] @ 0.000248047s :Searching for attached device...
+ERROR [IRDeviceCreate.cpp:110] @ 0.000875s :No device found!
+ERROR [DirectBridgeClientUSB.cpp:157] @ 0.000893066s :UVC device with serial 0 could not be found
