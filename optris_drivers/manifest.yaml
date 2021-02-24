@@ -1,0 +1,40 @@
+actions: []
+api_documentation: http://docs.ros.org/melodic/api/optris_drivers/html
+authors: "Stefan May (Nuremberg Institute of Technology Georg Simon Ohm - www.th-nuernberg.de),\
+  \ 64-Bit platform supported by Fraunhofer IPA (www.ipa.fraunhofer.de), Support for\
+  \ ROS hydro migration by Christopher-Eyk Hrabia (DAI-Labor, Technische Universit\xE4\
+  t Berlin)"
+brief: ''
+bugtracker: ''
+depends:
+- camera_info_manager
+- catkin
+- dynamic_reconfigure
+- image_transport
+- message_generation
+- message_runtime
+- roscpp
+- sensor_msgs
+- std_msgs
+- std_srvs
+depends_on: []
+description: ROS nodes wrapping the binary driver for Optris thermal imager devices.
+doc_job: http://build.ros.org/view/Mdoc/job/Mdoc__optris_drivers__ubuntu_bionic_amd64
+license: BSD
+maintainer_status: maintained
+maintainers: Evocortex GmbH <info@evocortex.com>
+msgs:
+- Temperature
+- Flag
+package_type: package
+repo_name: optris_drivers
+repo_url: ''
+srvs:
+- AutoFlag
+- Palette
+- TemperatureRange
+timestamp: 1596425672.217536
+url: http://ros.org/wiki/optris_drivers
+vcs: git
+vcs_uri: https://github.com/evocortex/optris_drivers.git
+vcs_version: master
